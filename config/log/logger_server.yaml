@@ -1,0 +1,95 @@
+version: 1
+
+formatters:
+  simple:
+    format: '%(asctime)s.%(msecs)03d - %(name)s - %(levelname)s - %(message)s'
+    datefmt: '%Y-%m-%d %H:%M:%S'
+  temperature_formatter:
+    format: '%(asctime)s.%(msecs)03d %(message)s'
+    datefmt: '%Y-%m-%d %H:%M:%S'
+
+filters:
+  filter1:
+    (): devicepilot.pylog.pyfilter.Filter1
+  filter2:
+    (): devicepilot.pylog.pyfilter.Filter2
+  filter3:
+    (): devicepilot.pylog.pyfilter.Filter3
+  filter4:
+    (): devicepilot.pylog.pyfilter.Filter4
+  filter5:
+    (): devicepilot.pylog.pyfilter.Filter5
+  filter6:
+    (): devicepilot.pylog.pyfilter.Filter6
+  filter7:
+    (): devicepilot.pylog.pyfilter.Filter7
+  filter8:
+    (): devicepilot.pylog.pyfilter.Filter8
+  filter9:
+    (): devicepilot.pylog.pyfilter.Filter9
+  filter10:
+    (): devicepilot.pylog.pyfilter.Filter10
+  filter11:
+    (): devicepilot.pylog.pyfilter.Filter11
+  filter12:
+    (): devicepilot.pylog.pyfilter.Filter12
+  filter13:
+    (): devicepilot.pylog.pyfilter.Filter13
+  dfr_filter:
+    (): devicepilot.pylog.pyfilter.DFRFilter
+  filter15:
+    (): devicepilot.pylog.pyfilter.Filter15
+  filter16:
+    (): devicepilot.pylog.pyfilter.Filter16
+  filter17:
+    (): devicepilot.pylog.pyfilter.Filter17
+
+handlers:
+  console:
+    class: logging.StreamHandler
+    level: DEBUG
+    formatter: simple
+    stream: ext://sys.stdout
+    filters: [filter1]
+  file_main_handler:
+    class: devicepilot.pylog.pylogger.DateIndexRotatingFileHandler
+    level: DEBUG
+    formatter: simple
+    filename: devicepilot.log
+    backupCount: 10
+    maxBytes: 10240000
+    encoding: utf8
+    filters: [filter1]
+  file_handler_error:
+    class: devicepilot.pylog.pylogger.DateIndexRotatingFileHandler
+    level: ERROR
+    formatter: simple
+    filename: pyrunner_error.log
+    backupCount: 10
+    maxBytes: 10240000
+    encoding: utf8
+  dfr:
+    class: devicepilot.pylog.pylogger.DateIndexRotatingFileHandler
+    mode: 'w'
+    level: DFR_DEBUG
+    filename: dfr.log
+    filters: [dfr_filter]
+  can:
+    class: devicepilot.pylog.pylogger.DateIndexRotatingFileHandler
+    level: DEBUG
+    formatter: simple
+    filename: can.log
+    backupCount: 10
+    maxBytes: 10240000
+    encoding: utf8
+    filters: [filter2]
+loggers:
+  main:
+    level: DEBUG
+    handlers: [console]
+    propagate: no
+root:
+    level: DEBUG
+    handlers: [console, can, dfr, file_main_handler,
+               file_handler_error]
+    propagate: no

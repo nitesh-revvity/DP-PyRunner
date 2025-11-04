@@ -1,0 +1,18 @@
+ {
+    "Adjustments": [
+        "predefined_tasks.bodhi.startup.test_send_to_gc",
+        "predefined_tasks.bodhi.startup.initialize_all_units",
+        "predefined_tasks.bodhi.startup.home_all_movers",
+        "predefined_tasks.bodhi.startup.test"
+    ],
+
+    "HW Tests": [
+        "predefined_tasks.hw_tests.fan_control_test.set_fan_speed",
+        "predefined_tasks.hw_tests.fan_control_test.get_fan_speed",
+        "predefined_tasks.hw_tests.temperature_unit_test.set_target_temperature",
+        "predefined_tasks.hw_tests.temperature_unit_test.get_current_temperature",
+        "predefined_tasks.hw_tests.plate_door_sensor_test.get_plate_door_sensor_state"
+    ]
+
+
+}

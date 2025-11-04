@@ -1,0 +1,5 @@
+version: 1
+loggers:
+  devicepilot:
+    level: DEBUG
+    propagate: no
